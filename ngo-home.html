@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="relative h-screen w-full overflow-hidden">
+        
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0">
+            <img class="h-full w-full object-cover" src="../static/assets/home-bg.jpg" alt="NGO background">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 h-full flex items-center">
+            <div class="container mx-auto px-8 lg:px-16">
+                <div class="max-w-3xl space-y-8">
+                    
+                    <!-- Welcome Badge -->
+                    <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20">
+                        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                        <span class="text-white font-medium">NGO Dashboard</span>
+                    </div>
+
+                    <!-- Main Heading -->
+                    <h1 class="text-6xl lg:text-7xl font-bold text-white leading-tight">
+                        Welcome
+                        <span class="block text-green-400 mt-2">{{name}}</span>
+                    </h1>
+
+                    <!-- Subheading -->
+                    <h3 class="text-3xl lg:text-4xl font-semibold text-white/90">
+                        Help the Under-fed in Your City
+                    </h3>
+
+                    <!-- Description -->
+                    <p class="text-lg text-white/80 leading-relaxed max-w-2xl">
+                        Accept and distribute extra food and help the needy people around your city. Tie up with Donors and Restaurants to contribute to the well-being and upliftment of the underprivileged people around you.
+                    </p>
+
+                    <!-- Call to Action Buttons -->
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <button 
+                            onclick="window.location.href='/ngo-dashboard'" 
+                            class="px-8 py-4 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2"
+                        >
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            Find Donations
+                        </button>
+                        
+                        <button 
+                            onclick="window.location.href='/ngo-donations-received-history'" 
+                            class="px-8 py-4 bg-white/10 backdrop-blur-md text-white rounded-lg font-semibold hover:bg-white/20 border-2 border-white/30 transform hover:scale-105 transition-all duration-200"
+                        >
+                            View History
+                        </button>
+                    </div>
+
+                    <!-- Features Grid -->
+                    <div class="grid md:grid-cols-2 gap-4 pt-8">
+                        <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                            <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-white text-lg font-semibold mb-2">Real-time Updates</h4>
+                            <p class="text-white/70 text-sm">Get instant notifications when food is available</p>
+                        </div>
+                        
+                        <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                            <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-white text-lg font-semibold mb-2">Location Based</h4>
+                            <p class="text-white/70 text-sm">Find food donations near your organization</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-50 to-transparent"></div>
+
+    </div>
+{% endblock %}

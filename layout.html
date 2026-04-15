@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Smart Serve{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #10b981;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover {
+            color: #10b981;
+        }
+    </style>
+
+    <script>
+        function renderNavigationLinks() {
+            const userRole = localStorage.getItem('userRole');
+            const navLinksContainer = document.getElementById('navLinksContainer');
+
+            if (userRole === 'Restaurant Owner') {
+                navLinksContainer.innerHTML = `
+                    <li><a href="{{ url_for('restaurant_home') }}" class="nav-link">Home</a></li>
+                    <li><a href="{{ url_for('donation') }}" class="nav-link">Donation</a></li>
+                    <li><a href="{{ url_for('prediction') }}" class="nav-link">Prediction</a></li>
+                    <li><a href="{{ url_for('viewRequests') }}" class="nav-link">Requests</a></li>
+                    <li><a href="{{ url_for('donationHistory') }}" class="nav-link">History</a></li>
+                    <li><a href="{{ url_for('ngoList') }}" class="nav-link">NGOs</a></li>
+                    <li><a href="{{ url_for('login') }}" class="nav-link text-red-500 hover:text-red-600">Logout</a></li>
+                `;
+            } else if (userRole === 'Asharam/NGO personnel') {
+                navLinksContainer.innerHTML = `
+                    <li><a href="{{ url_for('ngo_home') }}" class="nav-link">Home</a></li>
+                    <li><a href="{{ url_for('ngoDashboard') }}" class="nav-link">Dashboard</a></li>
+                    <li><a href="{{ url_for('viewRequests') }}" class="nav-link">Requests</a></li>
+                    <li><a href="{{ url_for('ngoDonationsHistory') }}" class="nav-link">History</a></li>
+                    <li><a href="{{ url_for('suppliersList') }}" class="nav-link">Suppliers</a></li>
+                    <li><a href="{{ url_for('login') }}" class="nav-link text-red-500 hover:text-red-600">Logout</a></li>
+                `;
+            } else if (userRole === 'Admin') {
+                navLinksContainer.innerHTML = `
+                    <li><a href="{{ url_for('admin_home') }}" class="nav-link">Home</a></li>
+                    <li><a href="{{ url_for('adminDashboard') }}" class="nav-link">Dashboard</a></li>
+                    <li><a href="{{ url_for('viewRequests') }}" class="nav-link">Requests</a></li>
+                    <li><a href="{{ url_for('suppliersList') }}" class="nav-link">Suppliers</a></li>
+                    <li><a href="{{ url_for('ngoList') }}" class="nav-link">NGOs</a></li>
+                    <li><a href="{{ url_for('login') }}" class="nav-link text-red-500 hover:text-red-600">Logout</a></li>
+                `;
+            } else {
+                navLinksContainer.innerHTML = `
+                    <li><a href="{{ url_for('single_home') }}" class="nav-link">Home</a></li>
+                    <li><a href="{{ url_for('askDonations') }}" class="nav-link">Request Food</a></li>
+                    <li><a href="{{ url_for('ngoList') }}" class="nav-link">NGOs</a></li>
+                    <li><a href="{{ url_for('suppliersList') }}" class="nav-link">Suppliers</a></li>
+                    <li><a href="{{ url_for('login') }}" class="nav-link text-red-500 hover:text-red-600">Logout</a></li>
+                `;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', renderNavigationLinks);
+    </script>
+</head>
+<body class="bg-gray-50">
+
+    <nav class="h-20 bg-white shadow-lg sticky top-0 z-50 flex items-center px-8 justify-between border-b-4 border-green-500">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+            </div>
+            <span class="text-2xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
+                Smart Serve
+            </span>
+        </div>
+        <ul id="navLinksContainer" class="flex items-center gap-8 text-gray-700 font-medium">
+            <!-- Navigation links will be dynamically rendered here -->
+        </ul>
+    </nav>
+
+    <div class="content min-h-screen">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer class="bg-gray-900 text-white py-8 mt-auto">
+        <div class="container mx-auto px-8 text-center">
+            <p class="text-gray-400">&copy; 2025 Smart Serve. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="min-h-screen w-full bg-gradient-to-br from-gray-50 to-green-50 py-8">
+    <div class="container mx-auto px-4 max-w-3xl">
+        
+        <!-- Header -->
+        <div class="mb-8 text-center">
+            <div class="inline-flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+                    <svg class="w-7 h-7 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                </div>
+                <h1 class="text-3xl font-bold text-gray-800">Food Waste Prediction</h1>
+            </div>
+            <p class="text-gray-600">Enter your data to predict potential food waste</p>
+        </div>
+
+        <!-- Form Card -->
+        <div class="bg-white rounded-2xl shadow-xl p-8">
+            <form method="post" enctype="multipart/form-data" class="space-y-6">
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Type of Food *</label>
+                        <select name="TypeOfFood" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-indigo-500 focus:outline-none transition-colors">
+                            <option value="">Select food type</option>
+                            <option value="Meat">Meat</option>
+                            <option value="Vegetables">Vegetables</option>
+                            <option value="Fruits">Fruits</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Number of Guests *</label>
+                        <input type="number" name="NumberOfGuests" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-indigo-500 focus:outline-none transition-colors" placeholder="Enter number">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Event Type *</label>
+                        <select name="EventType" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-indigo-500 focus:outline-none transition-colors">
+                            <option value="">Select event type</option>
+                            <option value="Corporate">Corporate</option>
+                            <option value="Birthday">Birthday</option>
+                            <option value="Wedding">Wedding</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Quantity of Food *</label>
+                        <input type="number" name="QuantityOfFood" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-indigo-500 focus:outline-none transition-colors" placeholder="Enter quantity">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Storage Conditions *</label>
+                        <select name="StorageConditions" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-indigo-500 focus:outline-none transition-colors">
+                            <option value="">Select storage</option>
+                            <option value="Refrigerated">Refrigerated</option>
+                            <option value="Frozen">Frozen</option>
+                            <option value="Room Temperature">Room Temperature</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Purchase History *</label>
+                        <select name="PurchaseHistory" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-indigo-500 focus:outline-none transition-colors">
+                            <option value="">Select history</option>
+                            <option value="Regular">Regular</option>
+                            <option value="First-time">First-time</option>
+                            <option value="Occasional">Occasional</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Seasonality *</label>
+                        <select name="Seasonality" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-indigo-500 focus:outline-none transition-colors">
+                            <option value="">Select season</option>
+                            <option value="All Seasons">All Seasons</option>
+                            <option value="Summer">Summer</option>
+                            <option value="Winter">Winter</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Preparation Method *</label>
+                        <select name="PreparationMethod" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-indigo-500 focus:outline-none transition-colors">
+                            <option value="">Select method</option>
+                            <option value="Buffet">Buffet</option>
+                            <option value="Finger Food">Finger Food</option>
+                            <option value="Plated">Plated</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Geographical Location *</label>
+                        <select name="GeographicalLocation" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-indigo-500 focus:outline-none transition-colors">
+                            <option value="">Select location</option>
+                            <option value="Urban">Urban</option>
+                            <option value="Suburban">Suburban</option>
+                            <option value="Rural">Rural</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Pricing *</label>
+                        <select name="Pricing" required class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-indigo-500 focus:outline-none transition-colors">
+                            <option value="">Select pricing</option>
+                            <option value="Low">Low</option>
+                            <option value="Moderate">Moderate</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="w-full px-6 py-4 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-lg font-semibold hover:from-indigo-700 hover:to-indigo-600 transition-all shadow-lg hover:shadow-xl text-lg">
+                        Generate Prediction
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Prediction Result -->
+        {% if prediction %}
+        <div class="mt-8 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl shadow-xl p-8 text-white transform animate-fade-in">
+            <div class="flex items-center gap-4 mb-4">
+                <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p class="text-green-100 text-sm font-semibold">Prediction Result</p>
+                    <h3 class="text-3xl font-bold">{{ prediction.data }}</h3>
+                </div>
+            </div>
+            <p class="text-green-50">Based on the data provided, this is the predicted food waste outcome.</p>
+        </div>
+        {% else %}
+        <div class="mt-8 bg-blue-50 border-2 border-blue-200 rounded-2xl p-6 text-center">
+            <svg class="w-12 h-12 mx-auto text-blue-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p class="text-blue-700 font-semibold">Submit the form to see your prediction</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .animate-fade-in {
+        animation: fade-in 0.5s ease-out;
+    }
+</style>
+{% endblock %}
